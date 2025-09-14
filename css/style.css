@@ -1,11 +1,13 @@
 /* ===== GLOBAL RESET & BASE STYLES ===== */
 * { margin: 0; padding: 0; box-sizing: border-box; }
+html { overflow-x: hidden; }
 body { 
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; 
     background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
     color: #ffffff;
     min-height: 100vh;
     padding: 0;
+    overflow-x: hidden;
 }
 /* ===== LAYOUT CONTAINERS ===== */
 .container {
@@ -384,11 +386,9 @@ select::-webkit-scrollbar-thumb {
 }
 .logo {
     order: 1;
-    margin-left: -320px;
 }
 .nav {
     order: 2;
-    margin-right: -300px;
     display: flex;
     gap: 2rem;
 }
@@ -399,13 +399,7 @@ select::-webkit-scrollbar-thumb {
         flex-direction: column;
         gap: 1rem;
     }
-    .logo {
-        margin-left: 0;
-        order: 1;
-    }
     .nav {
-        margin-right: 0;
-        order: 2;
         gap: 1.5rem;
         flex-wrap: wrap;
         justify-content: center;
