@@ -13,6 +13,12 @@ body {
     margin: 0 auto;
     padding: 40px 20px;
 }
+
+@media (max-width: 768px) {
+    .container {
+        padding: 20px 15px;
+    }
+}
 /* ===== ABOUT PAGE STYLES ===== */
 .about-page {
     display: none;
@@ -38,12 +44,25 @@ body {
     gap: 1.5rem;
     margin-top: 2rem;
 }
+
+@media (max-width: 768px) {
+    .features {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+}
 .feature {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 12px;
     padding: 1.5rem;
     text-align: center;
+}
+
+@media (max-width: 768px) {
+    .feature {
+        padding: 1.2rem;
+    }
 }
 .feature h4 {
     color: #ff6b6b;
@@ -74,6 +93,13 @@ h2 {
     -webkit-text-fill-color: transparent;
     background-clip: text;
 }
+
+@media (max-width: 768px) {
+    h2 {
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
+    }
+}
 /* ===== FORM COMPONENTS ===== */
 .form-grid {
     display: grid;
@@ -81,12 +107,27 @@ h2 {
     gap: 2rem;
     margin-bottom: 3rem;
 }
+
+@media (max-width: 768px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        margin-bottom: 2rem;
+    }
+}
 .form-section {
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
     padding: 2rem;
     backdrop-filter: blur(10px);
+}
+
+@media (max-width: 768px) {
+    .form-section {
+        padding: 1.5rem;
+        border-radius: 12px;
+    }
 }
 .form-section h3 {
     font-size: 1.2rem;
@@ -112,6 +153,14 @@ input, select {
     color: #ffffff;
     font-size: 0.95rem;
     transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    input, select {
+        padding: 14px 16px;
+        font-size: 16px;
+        border-radius: 8px;
+    }
 }
 input:focus, select:focus {
     outline: none;
@@ -171,6 +220,13 @@ select::-webkit-scrollbar-thumb {
     transition: all 0.3s ease;
     text-align: center;
 }
+
+@media (max-width: 768px) {
+    .file-upload-label {
+        padding: 1.5rem;
+        font-size: 0.9rem;
+    }
+}
 .file-upload-label:hover {
     border-color: #4ecdc4;
     background: rgba(78, 205, 196, 0.1);
@@ -198,6 +254,14 @@ select::-webkit-scrollbar-thumb {
     transition: all 0.3s ease;
     margin-top: 2rem;
 }
+
+@media (max-width: 768px) {
+    .generate-btn {
+        padding: 18px 32px;
+        font-size: 1rem;
+        margin-top: 1.5rem;
+    }
+}
 .generate-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 10px 30px rgba(255, 107, 107, 0.3);
@@ -214,6 +278,14 @@ select::-webkit-scrollbar-thumb {
     margin-top: 3rem;
     backdrop-filter: blur(10px);
 }
+
+@media (max-width: 768px) {
+    #previewSection {
+        padding: 1.5rem;
+        margin-top: 2rem;
+        border-radius: 12px;
+    }
+}
 #previewSection h3 {
     color: #4ecdc4;
     margin-bottom: 1rem;
@@ -225,12 +297,26 @@ select::-webkit-scrollbar-thumb {
     border-radius: 12px;
     background: #ffffff;
 }
+
+@media (max-width: 768px) {
+    #preview {
+        height: 400px;
+    }
+}
 /* Download Controls */
 .download-controls {
     display: flex;
     gap: 1rem;
     margin-top: 1rem;
     align-items: center;
+}
+
+@media (max-width: 768px) {
+    .download-controls {
+        flex-direction: column;
+        gap: 0.8rem;
+        align-items: stretch;
+    }
 }
 #downloadName {
     flex: 1;
@@ -246,6 +332,13 @@ select::-webkit-scrollbar-thumb {
     cursor: pointer;
     transition: all 0.3s ease;
 }
+
+@media (max-width: 768px) {
+    #downloadBtn {
+        padding: 14px 24px;
+        width: 100%;
+    }
+}
 #downloadBtn:hover {
     transform: translateY(-1px);
     box-shadow: 0 5px 15px rgba(78, 205, 196, 0.3);
@@ -259,6 +352,13 @@ select::-webkit-scrollbar-thumb {
     font-weight: 600;
     cursor: pointer;
     transition: all 0.3s ease;
+}
+
+@media (max-width: 768px) {
+    #blcBtn {
+        padding: 14px 24px;
+        width: 100%;
+    }
 }
 #blcBtn:hover {
     transform: translateY(-1px);
@@ -284,13 +384,32 @@ select::-webkit-scrollbar-thumb {
 }
 .logo {
     order: 1;
-    margin-left: -350px;
+    margin-left: -320px;
 }
 .nav {
     order: 2;
     margin-right: -300px;
     display: flex;
     gap: 2rem;
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        padding: 0 15px;
+        flex-direction: column;
+        gap: 1rem;
+    }
+    .logo {
+        margin-left: 0;
+        order: 1;
+    }
+    .nav {
+        margin-right: 0;
+        order: 2;
+        gap: 1.5rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
 }
 .nav a {
     color: rgba(255, 255, 255, 0.8);
@@ -322,6 +441,13 @@ select::-webkit-scrollbar-thumb {
     gap: 2rem;
     margin-top: 1rem;
 }
+
+@media (max-width: 768px) {
+    .footer-links {
+        gap: 1.5rem;
+        flex-wrap: wrap;
+    }
+}
 .footer-links a {
     color: rgba(255, 255, 255, 0.6);
     text-decoration: none;
@@ -337,4 +463,79 @@ select::-webkit-scrollbar-thumb {
     width: 16px;
     height: 16px;
     fill: currentColor;
+}
+
+/* ===== MOBILE OPTIMIZATIONS ===== */
+@media (max-width: 480px) {
+    .container {
+        padding: 15px 10px;
+    }
+    
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .form-section {
+        padding: 1rem;
+    }
+    
+    .form-section h3 {
+        font-size: 1.1rem;
+    }
+    
+    input, select {
+        padding: 16px;
+        font-size: 16px;
+    }
+    
+    .generate-btn {
+        padding: 20px 32px;
+        font-size: 1rem;
+    }
+    
+    #downloadBtn, #blcBtn {
+        padding: 16px 24px;
+    }
+    
+    .nav {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+    
+    .footer-links {
+        gap: 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* ===== TOUCH & ACCESSIBILITY ===== */
+@media (hover: none) and (pointer: coarse) {
+    .generate-btn:hover,
+    #downloadBtn:hover,
+    #blcBtn:hover,
+    .back-btn:hover {
+        transform: none;
+        box-shadow: none;
+    }
+    
+    .file-upload-label:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* ===== IMPROVED SCROLLING ===== */
+.image-list {
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== PREVENT ZOOM ON INPUT FOCUS ===== */
+@media (max-width: 768px) {
+    input[type="text"],
+    input[type="email"],
+    input[type="date"],
+    select {
+        font-size: 16px !important;
+    }
 }
