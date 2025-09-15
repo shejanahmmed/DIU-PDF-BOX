@@ -20,6 +20,7 @@
             <nav class="nav">
                 <a href="#" onclick="showHome()">Home</a>
                 <a href="#" onclick="showAbout()">About</a>
+                <a href="#" onclick="showHowItWorks()">How It Works</a>
                 <a href="https://studentportal.diu.edu.bd/" target="_blank">Student Portal</a>
                 <a href="https://elearn.daffodilvarsity.edu.bd/" target="_blank">BLC</a>
             </nav>
@@ -162,10 +163,53 @@
             </div>
         </div>
 
+        <!-- How It Works Page Content -->
+        <div id="howItWorksPage" class="about-page">
+            <button class="back-btn" onclick="showHome()">← Back to Home</button>
+            
+            <div class="about-content">
+                <h3>🚀 How It Works</h3>
+                <p>Creating professional DIU documents is now super simple! Follow these easy steps:</p>
+                
+                <div class="features">
+                    <div class="feature">
+                        <h4>1️⃣ Fill Information</h4>
+                        <p>Enter your student details, course info and select document type (Assignment/Lab Report)</p>
+                    </div>
+                    <div class="feature">
+                        <h4>2️⃣ Upload Files</h4>
+                        <p>Drag & drop your images or PDFs. Reorder them by dragging to arrange as needed</p>
+                    </div>
+                    <div class="feature">
+                        <h4>3️⃣ Generate PDF</h4>
+                        <p>Click "Generate PDF & Preview" - we'll create a professional cover page automatically</p>
+                    </div>
+                    <div class="feature">
+                        <h4>4️⃣ Preview & Download</h4>
+                        <p>Check your document in the preview, rename if needed, then download your compressed PDF</p>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 2rem;">
+                    <h3>💡 Pro Tips</h3>
+                    <p><strong>File Size:</strong> Images are automatically compressed to keep PDFs small (3-6MB instead of 20MB+)</p>
+                    <p><strong>Mobile:</strong> On phones, use "Open PDF" button since preview isn't available</p>
+                    <p><strong>Order:</strong> Drag files in the upload section to reorder pages</p>
+                    <p><strong>Formats:</strong> Supports JPG, PNG, PDF files - mix and match as needed</p>
+                </div>
+            </div>
+        </div>
+
         <!-- PDF Preview Section -->
         <div id="previewSection" style="display: none;">
             <h3>PDF Preview</h3>
             <iframe id="preview"></iframe>
+            <div id="mobilePreview" style="display: none; text-align: center; padding: 40px 20px; border: 2px dashed rgba(255,255,255,0.3); border-radius: 8px; margin: 20px 0;">
+                <div style="font-size: 3rem; margin-bottom: 1rem;">📄</div>
+                <p style="margin-bottom: 1rem; color: rgba(255,255,255,0.8);">PDF preview not available on mobile</p>
+                <button id="openPdfBtn" style="background: rgba(100,149,237,0.8); color: white; border: none; padding: 12px 24px; border-radius: 6px; cursor: pointer; margin-bottom: 1rem;">Open PDF</button>
+            </div>
+            <div id="fileSizeInfo" style="font-size: 0.85rem; color: rgba(255,255,255,0.7); margin: 8px 0; text-align: left;"></div>
             <div class="download-controls">
                 <input type="text" id="downloadName" placeholder="Enter filename">
                 <button id="downloadBtn">Download PDF</button>

@@ -13,21 +13,47 @@ const hiddenDateInput = document.getElementById('hiddenDate');
 let filesArray = [];
 
 /**
- * Date Picker Handler
- * Formats date from YYYY-MM-DD to DD/MM/YY
+ * Image Compression Utility
+ * Compresses images to reduce file size while maintaining quality
  */
-hiddenDateInput.addEventListener('change', function() {
-    const selectedDate = new Date(this.value + 'T00:00:00');
-    const day = String(selectedDate.getDate()).padStart(2, '0');
-    const month = String(selectedDate.getMonth() + 1).padStart(2, '0');
-    const year = String(selectedDate.getFullYear()).slice(-2);
-    submitDateInput.value = `${day}/${month}/${year}`;
-});
+function compressImage(file, quality = 0.7, maxWidth = 1200, maxHeight = 1600) {
+    return new Promise((resolve) => {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        const img = new Image();
+        
+        img.onload = () => {
+            // Calculate new dimensions while maintaining aspect ratio
+            let { width, height } = img;
+            const aspectRatio = width / height;
+            
+            if (width > maxWidth) {
+                width = maxWidth;
+                height = width / aspectRatio;
+            }
+            if (height > maxHeight) {
+                height = maxHeight;
+                width = height * aspectRatio;
+            }
+            
+            // Set canvas dimensions
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Draw and compress image
+            ctx.drawImage(img, 0, 0, width, height);
+            
+            // Convert to blob with compression
+            canvas.toBlob((blob) => {
+                resolve(blob);
+            }, 'image/jpeg', quality);
+        };
+        
+        img.src = URL.createObjectURL(file);
+    });
+}
 
-// Click handler for the visible date input
-submitDateInput.addEventListener('click', function() {
-    hiddenDateInput.showPicker();
-});
+
 
 /**
  * File Upload Handler
@@ -125,33 +151,10 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
         const { PDFDocument, rgb, StandardFonts } = PDFLib;
         const pdfDoc = await PDFDocument.create();
 
-        // Get document type and attempt template loading
+        // Get document type and create cover page
         const docType = document.getElementById('docType').value;
-        
-        let coverPage;
         const font = await pdfDoc.embedFont(StandardFonts.Helvetica);
-        let templateLoaded = false;
-        
-        // Try to load predefined template
-        try {
-            const response = await fetch(`templates/${docType}`);
-            if (response.ok) {
-                const templateBytes = await response.arrayBuffer();
-                const templatePdf = await PDFDocument.load(templateBytes);
-                const [templatePage] = await pdfDoc.copyPages(templatePdf, [0]);
-                coverPage = pdfDoc.addPage(templatePage);
-                templateLoaded = true;
-                console.log(`Using ${docType} template`);
-            }
-        } catch (error) {
-            console.log(`Could not load ${docType}:`, error.message);
-        }
-        
-        // Fallback to blank page if template not found
-        if (!templateLoaded) {
-            coverPage = pdfDoc.addPage([595, 842]);
-            console.log('Using default blank page');
-        }
+        const coverPage = pdfDoc.addPage([595, 842]);
         
         // Extract form data
         const semester = document.getElementById('semester').value;
@@ -172,7 +175,7 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
         }
         
         // Generate DIU cover page based on document type
-        if (!templateLoaded || docType === 'assignment.pdf' || docType === 'lab_report.pdf') {
+        if (docType === 'assignment.pdf' || docType === 'lab_report.pdf') {
             const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
             
             // Draw DIU logo text (centered)
@@ -353,19 +356,12 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
         for(const file of filesArray){
             if(file.type.startsWith('image/')){
                 try {
-                    const imgBytes = await file.arrayBuffer();
-                    let img;
-                    // Try different image formats
-                    try {
-                        img = await pdfDoc.embedJpg(imgBytes);
-                    } catch {
-                        try {
-                            img = await pdfDoc.embedPng(imgBytes);
-                        } catch {
-                            console.error(`Failed to embed image: ${file.name}`);
-                            continue;
-                        }
-                    }
+                    // Compress image before embedding
+                    const compressedBlob = await compressImage(file, 0.8, 1200, 1600);
+                    const imgBytes = await compressedBlob.arrayBuffer();
+                    
+                    // Embed compressed image (always as JPEG for better compression)
+                    const img = await pdfDoc.embedJpg(imgBytes);
                     
                     // Scale image to fit A4 page while maintaining aspect ratio
                     const maxWidth = 545;  // A4 width minus margins
@@ -397,7 +393,6 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
                     const pdfBytes = await file.arrayBuffer();
                     const uploadPdf = await PDFDocument.load(pdfBytes);
                     const pageCount = uploadPdf.getPageCount();
-                    console.log(`Processing PDF: ${file.name} with ${pageCount} pages`);
                     
                     // Copy all pages from uploaded PDF
                     for (let i = 0; i < pageCount; i++) {
@@ -415,9 +410,36 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
         const blobUrl = URL.createObjectURL(blob);
 
+        // Calculate and display file size
+        const fileSizeBytes = pdfBytes.length;
+        const fileSizeMB = (fileSizeBytes / (1024 * 1024)).toFixed(2);
+        const fileSizeKB = (fileSizeBytes / 1024).toFixed(0);
+        const sizeDisplay = fileSizeBytes > 1024 * 1024 ? `${fileSizeMB} MB` : `${fileSizeKB} KB`;
+        
+        document.getElementById('fileSizeInfo').textContent = `File size: ${sizeDisplay}`;
+
+        // Detect mobile device
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
+        
         // Show preview section with generated PDF
         document.getElementById('previewSection').style.display = 'block';
-        document.getElementById('preview').src = blobUrl;
+        
+        if (isMobile) {
+            // Hide iframe and show mobile fallback
+            document.getElementById('preview').style.display = 'none';
+            document.getElementById('mobilePreview').style.display = 'block';
+            
+            // Set up open PDF button
+            document.getElementById('openPdfBtn').onclick = () => {
+                window.open(blobUrl, '_blank');
+            };
+        } else {
+            // Show iframe preview on desktop
+            document.getElementById('preview').style.display = 'block';
+            document.getElementById('mobilePreview').style.display = 'none';
+            document.getElementById('preview').src = blobUrl;
+        }
+        
         document.getElementById('downloadName').value = document.getElementById('outputName').value || 'DIU.pdf';
 
         // Store blob URL for download

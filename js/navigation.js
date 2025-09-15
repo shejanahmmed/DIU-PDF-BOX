@@ -13,6 +13,7 @@ function showHome() {
     document.querySelectorAll('.form-section').forEach(section => section.style.display = 'block');
     document.querySelector('.generate-btn').style.display = 'block';
     document.getElementById('aboutPage').style.display = 'none';
+    document.getElementById('howItWorksPage').style.display = 'none';
 }
 
 /**
@@ -26,4 +27,19 @@ function showAbout() {
     document.querySelector('.generate-btn').style.display = 'none';
     document.getElementById('previewSection').style.display = 'none';
     document.getElementById('aboutPage').style.display = 'block';
+    document.getElementById('howItWorksPage').style.display = 'none';
+}
+
+/**
+ * Show How It Works Page
+ * Displays how it works section and hides main application interface
+ */
+function showHowItWorks() {
+    document.querySelector('.container > h2').style.display = 'none';
+    document.querySelector('.form-grid').style.display = 'none';
+    document.querySelectorAll('.form-section').forEach(section => section.style.display = 'none');
+    document.querySelector('.generate-btn').style.display = 'none';
+    document.getElementById('previewSection').style.display = 'none';
+    document.getElementById('aboutPage').style.display = 'none';
+    document.getElementById('howItWorksPage').style.display = 'block';
 }
