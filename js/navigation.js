@@ -7,12 +7,16 @@
  * Update active navigation link
  */
 function updateActiveNav(activeId) {
-    // Remove active class from all nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
+    // Remove active class from all nav links (both desktop and mobile)
+    document.querySelectorAll('.nav-link, .mobile-nav-link').forEach(link => {
         link.classList.remove('active');
     });
-    // Add active class to current link
-    document.getElementById(activeId).classList.add('active');
+    // Add active class to current link (both desktop and mobile)
+    const desktopLink = document.getElementById(activeId);
+    const mobileLink = document.getElementById('mobile-' + activeId.replace('-link', '-link'));
+    
+    if (desktopLink) desktopLink.classList.add('active');
+    if (mobileLink) mobileLink.classList.add('active');
 }
 
 /**
@@ -78,6 +82,38 @@ function toggleTheme() {
         localStorage.setItem('theme', 'dark');
     }
 }
+
+/**
+ * Mobile Menu Functions
+ */
+function toggleMobileMenu() {
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburger = document.querySelector('.hamburger-menu');
+    
+    mobileNav.classList.toggle('active');
+    hamburger.classList.toggle('active');
+}
+
+function closeMobileMenu() {
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburger = document.querySelector('.hamburger-menu');
+    
+    mobileNav.classList.remove('active');
+    hamburger.classList.remove('active');
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(event) {
+    const mobileNav = document.getElementById('mobile-nav');
+    const hamburger = document.querySelector('.hamburger-menu');
+    const header = document.querySelector('.header');
+    
+    if (mobileNav && mobileNav.classList.contains('active')) {
+        if (!header.contains(event.target)) {
+            closeMobileMenu();
+        }
+    }
+});
 
 /**
  * Initialize theme on page load

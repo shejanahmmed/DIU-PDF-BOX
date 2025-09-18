@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DIU PDF Generator</title>
+    <title>DIU PDF</title>
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -17,9 +17,11 @@
     <header class="header">
         <div class="header-content">
             <div class="logo" onclick="showHome()">
-                <h1><i class="fas fa-file-pdf"></i> DIU PDF</h1>
+                <img src="Logos/DIU PDF BOX.png" alt="DIU PDF" class="logo-img">
             </div>
-            <nav class="nav">
+            
+            <!-- Desktop Navigation -->
+            <nav class="nav desktop-nav">
                 <a href="#" onclick="showHome()" class="nav-link active" id="home-link">
                     <i class="fas fa-home"></i> Home
                 </a>
@@ -36,19 +38,48 @@
                     <i class="fas fa-chalkboard-teacher"></i> BLC
                 </a>
             </nav>
-            <div class="theme-controls">
-                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-                    <i class="fas fa-sun" id="theme-icon"></i>
+            
+            <div class="header-controls">
+                <div class="theme-controls">
+                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                        <i class="fas fa-sun" id="theme-icon"></i>
+                    </button>
+                </div>
+                
+                <!-- Mobile Hamburger Menu -->
+                <button class="hamburger-menu" onclick="toggleMobileMenu()" title="Menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </button>
             </div>
         </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <nav class="mobile-nav" id="mobile-nav">
+            <a href="#" onclick="showHome(); closeMobileMenu()" class="mobile-nav-link active" id="mobile-home-link">
+                <i class="fas fa-home"></i> Home
+            </a>
+            <a href="#" onclick="showAbout(); closeMobileMenu()" class="mobile-nav-link" id="mobile-about-link">
+                <i class="fas fa-info-circle"></i> About
+            </a>
+            <a href="#" onclick="showHowItWorks(); closeMobileMenu()" class="mobile-nav-link" id="mobile-how-link">
+                <i class="fas fa-question-circle"></i> How It Works
+            </a>
+            <a href="https://studentportal.diu.edu.bd/" target="_blank" class="mobile-nav-link">
+                <i class="fas fa-graduation-cap"></i> Portal
+            </a>
+            <a href="https://elearn.daffodilvarsity.edu.bd/" target="_blank" class="mobile-nav-link">
+                <i class="fas fa-chalkboard-teacher"></i> BLC
+            </a>
+        </nav>
     </header>
     
     <!-- Main Application Container -->
     <div class="container">
         <div class="hero-section">
-            <h2><i class="fas fa-graduation-cap"></i> DIU PDF Generator</h2>
-            <p class="hero-subtitle">Create professional academic documents in seconds ✨</p>
+            <h2><i class="fas fa-graduation-cap"></i> DIU PDF BOX</h2>
+            <p class="hero-subtitle">Create academic documents in seconds ✨</p>
         </div>
         
         <!-- Form Input Sections -->
@@ -145,6 +176,21 @@
                 <h3>👨💻 About Me</h3>
                 <p>Hi! I'm <strong>Farjan Ahmmed</strong>, a Software Engineering student at <strong>Daffodil International University</strong> pursuing my BSc degree.</p>
                 <p>As a fellow DIU student, I understand the daily struggles of creating properly formatted academic documents. That's why I built this tool - to make our academic life a bit easier!</p>
+                
+                <div class="footer-links" style="justify-content: center; margin: 2rem 0;">
+                    <a href="https://www.linkedin.com/in/farjan-ahmmed/" target="_blank">
+                        <i class="fab fa-linkedin"></i> LinkedIn
+                    </a>
+                    <a href="https://github.com/shejanahmmed" target="_blank">
+                        <i class="fab fa-github"></i> GitHub
+                    </a>
+                    <a href="https://www.facebook.com/beingshejan/" target="_blank">
+                        <i class="fab fa-facebook"></i> Facebook
+                    </a>
+                    <a href="https://www.instagram.com/iamshejan" target="_blank">
+                        <i class="fab fa-instagram"></i> Instagram
+                    </a>
+                </div>
                 
                 <h3 style="margin-top: 2rem;">🎯 Why I Built This</h3>
                 <p>Tired of manually formatting assignment covers and lab reports? Me too! This tool automates the boring stuff so we can focus on what matters - our actual work.</p>
@@ -243,7 +289,7 @@
     <!-- Footer Section -->
     <footer class="footer">
         <div class="footer-content">
-            <p>Made by <strong>Shejan</strong></p>
+            <p>&copy; 2024 DIU PDF BOX. Made by <strong>Shejan</strong></p>
             <!-- Social Media Links -->
             <div class="footer-links">
                 <a href="https://www.linkedin.com/in/farjan-ahmmed/" target="_blank">
