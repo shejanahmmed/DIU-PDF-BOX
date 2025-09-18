@@ -106,10 +106,23 @@ body {
   transition: transform 0.2s ease;
 }
 
+.logo-text {
+  display: none;
+  font-size: 1.1rem;
+  font-weight: 700;
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 @media (max-width: 768px) {
   .logo-img {
-    height: 16px;
-    max-width: 120px;
+    display: none;
+  }
+  
+  .logo-text {
+    display: block;
   }
 }
 
@@ -603,14 +616,8 @@ input::placeholder {
 /* ===== RESPONSIVE DESIGN ===== */
 @media (max-width: 768px) {
   .header-content {
-    padding: 0.75rem 1rem;
-    gap: 0.5rem;
-    min-height: 60px;
-  }
-  
-  .logo {
-    flex-shrink: 0;
-    max-width: 120px;
+    padding: 1rem;
+    gap: 1rem;
   }
 
   .desktop-nav {
