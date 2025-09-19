@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://shejanahmmed.github.io/DIU-PDF-BOX/sitemap.xml
+
+# Disallow common non-content directories
+Disallow: /css/
+Disallow: /js/
+Disallow: /Logos/
