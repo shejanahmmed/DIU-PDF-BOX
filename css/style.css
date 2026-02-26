@@ -875,8 +875,18 @@ select {
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.875rem;
-  font-weight: 500;
-  transition: color 0.2s ease;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.footer-links a i {
+  font-size: 1.1rem;
+  width: 1.25rem;
+  display: flex;
+  justify-content: center;
 }
 
 .footer-links a:hover {
@@ -1122,7 +1132,24 @@ select {
     transition: all 0.3s ease;
 }
 
-.social-pills .website { background: #10b981; color: white; }
+.social-pills .website { 
+    background: #10b981; 
+    color: white; 
+    border: 1px solid rgba(255,255,255,0.1); 
+}
+
+.fa-globe-americas {
+    background: linear-gradient(135deg, #10b981, #34d399, #60a5fa);
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+}
+
+/* Ensure the icon stays white when inside the emerald pill on About page */
+.social-pills .pill.website i {
+    background: none !important;
+    -webkit-text-fill-color: white !important;
+    color: white !important;
+}
 .social-pills .github { background: #1a1f23; color: white; }
 .social-pills .linkedin { background: #0077b5; color: white; }
 .social-pills .facebook { background: #1877f2; color: white; }

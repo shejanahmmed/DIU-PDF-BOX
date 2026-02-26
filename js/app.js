@@ -72,8 +72,6 @@ function renderCoverCard() {
     updatePageNumbers();
 }
 
-// Initial Render removed - now renders on first upload
-
 /**
  * Image Compression Utility
  * Compresses images to reduce file size while maintaining quality
@@ -283,101 +281,118 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
         if (docType === 'assignment.pdf' || docType === 'lab_report.pdf') {
             const boldFont = await pdfDoc.embedFont(StandardFonts.HelveticaBold);
             
-            // Draw DIU logo text (centered)
-            coverPage.drawText('Daffodil', { x: 242, y: 800, size: 28, font: boldFont, color: rgb(0.1, 0.4, 0.8) });
-            coverPage.drawText('International', { x: 255, y: 785, size: 12, font, color: rgb(0.4, 0.4, 0.4) });
-            coverPage.drawText('University', { x: 265, y: 765, size: 24, font: boldFont, color: rgb(0.2, 0.6, 0.2) });
+            try {
+                // Load and Embed DIU Logo Image
+                const logoResponse = await fetch('Logos/Logo-DIU.png');
+                const logoBytes = await logoResponse.arrayBuffer();
+                const logoImage = await pdfDoc.embedPng(logoBytes);
+                
+                // Calculate centered position for logo
+                const logoWidth = 180;
+                const logoHeight = (logoImage.height / logoImage.width) * logoWidth;
+                const logoX = (coverPage.getWidth() - logoWidth) / 2;
+                const logoY = 750;
+                
+                coverPage.drawImage(logoImage, {
+                    x: logoX,
+                    y: logoY,
+                    width: logoWidth,
+                    height: logoHeight,
+                });
+            } catch (error) {
+                console.error('Error loading DIU logo image:', error);
+                // Fallback to text if image fails to load
+                coverPage.drawText('Daffodil', { x: 242, y: 800, size: 28, font: boldFont, color: rgb(0.1, 0.4, 0.8) });
+                coverPage.drawText('International', { x: 255, y: 785, size: 12, font, color: rgb(0.4, 0.4, 0.4) });
+                coverPage.drawText('University', { x: 265, y: 765, size: 24, font: boldFont, color: rgb(0.2, 0.6, 0.2) });
+            }
             
-            // Document title and header based on type (centered)
+            // Document title (centered)
             const isLabReport = docType === 'lab_report.pdf';
             const docTitle = isLabReport ? 'Lab Report' : 'Assignment';
-            coverPage.drawText(docTitle, { x: isLabReport ? 255 : 245, y: 700, size: 20, font });
-            coverPage.drawText('Only for course Teacher', { x: isLabReport ? 245 : 235, y: 655, size: 11, font });
-            
-            // Initialize evaluation table
-            let tableY = 630;
-            
-            // Draw table header with borders - different layout for lab report vs assignment
-            if (isLabReport) {
-                // Lab report table with criteria number column
-                coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 30, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
-                coverPage.drawLine({ start: { x: 155, y: tableY + 15 }, end: { x: 155, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 185, y: tableY + 15 }, end: { x: 185, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 265, y: tableY + 15 }, end: { x: 265, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 345, y: tableY + 15 }, end: { x: 345, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 425, y: tableY + 15 }, end: { x: 425, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 475, y: tableY + 15 }, end: { x: 475, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-            } else {
-                // Assignment table with marks column
-                coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 30, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
-                coverPage.drawLine({ start: { x: 155, y: tableY + 15 }, end: { x: 155, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 185, y: tableY + 15 }, end: { x: 185, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 265, y: tableY + 15 }, end: { x: 265, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 345, y: tableY + 15 }, end: { x: 345, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 425, y: tableY + 15 }, end: { x: 425, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 475, y: tableY + 15 }, end: { x: 475, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-            }
-            
-            // Table header text - different for lab report vs assignment
-            if (isLabReport) {
+            const docTitleSize = 26;
+            const docTitleWidth = boldFont.widthOfTextAtSize(docTitle, docTitleSize);
+            const docTitleX = (coverPage.getWidth() - docTitleWidth) / 2;
+            coverPage.drawText(docTitle, { x: docTitleX, y: 700, size: docTitleSize, font: boldFont });
 
-                coverPage.drawText('Needs', { x: 205, y: tableY + 5, size: 8, font });
-                coverPage.drawText('Improvement', { x: 200, y: tableY - 5, size: 8, font });
-                coverPage.drawText('Developing', { x: 285, y: tableY, size: 8, font });
-                coverPage.drawText('Sufficient', { x: 365, y: tableY, size: 8, font });
-                coverPage.drawText('Above', { x: 435, y: tableY + 5, size: 8, font });
-                coverPage.drawText('Average', { x: 433, y: tableY - 5, size: 8, font });
-                coverPage.drawText('Total', { x: 485, y: tableY + 5, size: 8, font });
-                coverPage.drawText('Mark', { x: 485, y: tableY - 5, size: 8, font });
-            } else {
-                coverPage.drawText('Needs', { x: 205, y: tableY + 5, size: 8, font });
-                coverPage.drawText('Improvement', { x: 200, y: tableY - 5, size: 8, font });
-                coverPage.drawText('Developing', { x: 285, y: tableY, size: 8, font });
-                coverPage.drawText('Sufficient', { x: 365, y: tableY, size: 8, font });
-                coverPage.drawText('Above', { x: 435, y: tableY + 5, size: 8, font });
-                coverPage.drawText('Average', { x: 433, y: tableY - 5, size: 8, font });
-                coverPage.drawText('Total', { x: 485, y: tableY + 5, size: 8, font });
-                coverPage.drawText('Mark', { x: 485, y: tableY - 5, size: 8, font });
-            }
+            // Initialize evaluation table
+            let tableY = 650;
+            
+            // Draw 'Only for course Teacher' row (Full width header)
+            const boxHeight = 30;
+            coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: boxHeight, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
+            
+            const subtitle = 'Only for course Teacher';
+            const subtitleSize = 11;
+            const subtitleWidth = font.widthOfTextAtSize(subtitle, subtitleSize);
+            const subtitleX = 75 + (445 - subtitleWidth) / 2;
+            
+            // Vertical centering logic: tableY is the baseline, box is centered around it
+            const subtitleY = tableY - (subtitleSize / 4);
+            coverPage.drawText(subtitle, { x: subtitleX, y: subtitleY, size: subtitleSize, font });
+
+            tableY -= 30; // Move to next row
+            
+            // Column definitions for precise centering
+            const cols = [
+                { x: 75, w: 80 }, { x: 155, w: 30 }, { x: 185, w: 80 }, 
+                { x: 265, w: 80 }, { x: 345, w: 80 }, { x: 425, w: 50 }, { x: 475, w: 45 }
+            ];
+
+            // Helper to draw text centered in a cell (both H and V)
+            const drawCenteredInCell = (text, colIndex, y, size, font) => {
+                const col = cols[colIndex];
+                const tw = font.widthOfTextAtSize(text, size);
+                const tx = col.x + (col.w - tw) / 2;
+                const ty = y - (size / 4); 
+                coverPage.drawText(text, { x: tx, y: ty, size, font });
+            };
+
+            // Draw table header borders
+            coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 30, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
+            cols.slice(0, -1).forEach(c => {
+                coverPage.drawLine({ start: { x: c.x + c.w, y: tableY + 15 }, end: { x: c.x + c.w, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
+            });
+
+            // Table header text
+            drawCenteredInCell('Criteria', 0, tableY, 8, font);
+            drawCenteredInCell('Mark', 1, tableY, 8, font);
+            drawCenteredInCell('Needs', 2, tableY + 5, 8, font);
+            drawCenteredInCell('Improvement', 2, tableY - 5, 8, font);
+            drawCenteredInCell('Developing', 3, tableY, 8, font);
+            drawCenteredInCell('Sufficient', 4, tableY, 8, font);
+            drawCenteredInCell('Above', 5, tableY + 5, 8, font);
+            drawCenteredInCell('Average', 5, tableY - 5, 8, font);
+            drawCenteredInCell('Total', 6, tableY + 5, 8, font);
+            drawCenteredInCell('Mark', 6, tableY - 5, 8, font);
             
             // Percentage allocation row
             tableY -= 30;
+            coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 30, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
+            cols.slice(0, -1).forEach(c => {
+                coverPage.drawLine({ start: { x: c.x + c.w, y: tableY + 15 }, end: { x: c.x + c.w, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
+            });
+
             if (isLabReport) {
-                coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 30, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
-                coverPage.drawLine({ start: { x: 155, y: tableY + 15 }, end: { x: 155, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 185, y: tableY + 15 }, end: { x: 185, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 265, y: tableY + 15 }, end: { x: 265, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 345, y: tableY + 15 }, end: { x: 345, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 425, y: tableY + 15 }, end: { x: 425, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 475, y: tableY + 15 }, end: { x: 475, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                
-                coverPage.drawText('Allocate mark &', { x: 80, y: tableY + 5, size: 8, font });
-                coverPage.drawText('Percentage', { x: 90, y: tableY - 5, size: 8, font });
-                coverPage.drawText('25%', { x: 215, y: tableY, size: 8, font });
-                coverPage.drawText('50%', { x: 295, y: tableY, size: 8, font });
-                coverPage.drawText('75%', { x: 375, y: tableY, size: 8, font });
-                coverPage.drawText('100%', { x: 440, y: tableY, size: 8, font });
-                coverPage.drawText('25', { x: 495, y: tableY, size: 8, font });
+                drawCenteredInCell('Allocate mark &', 0, tableY + 5, 8, font);
+                drawCenteredInCell('Percentage', 0, tableY - 5, 8, font);
+                drawCenteredInCell('25%', 2, tableY, 8, font);
+                drawCenteredInCell('50%', 3, tableY, 8, font);
+                drawCenteredInCell('75%', 4, tableY, 8, font);
+                drawCenteredInCell('100%', 5, tableY, 8, font);
+                drawCenteredInCell('25', 6, tableY, 8, font);
             } else {
-                coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 30, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
-                coverPage.drawLine({ start: { x: 155, y: tableY + 15 }, end: { x: 155, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 185, y: tableY + 15 }, end: { x: 185, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 265, y: tableY + 15 }, end: { x: 265, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 345, y: tableY + 15 }, end: { x: 345, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 425, y: tableY + 15 }, end: { x: 425, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 475, y: tableY + 15 }, end: { x: 475, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                
-                coverPage.drawText('Allocate mark &', { x: 80, y: tableY + 5, size: 8, font });
-                coverPage.drawText('Percentage', { x: 90, y: tableY - 5, size: 8, font });
-                coverPage.drawText('25%', { x: 215, y: tableY, size: 8, font });
-                coverPage.drawText('50%', { x: 295, y: tableY, size: 8, font });
-                coverPage.drawText('75%', { x: 375, y: tableY, size: 8, font });
-                coverPage.drawText('100%', { x: 440, y: tableY, size: 8, font });
-                coverPage.drawText('5', { x: 495, y: tableY, size: 8, font });
+                drawCenteredInCell('Allocate mark &', 0, tableY + 5, 8, font);
+                drawCenteredInCell('Percentage', 0, tableY - 5, 8, font);
+                drawCenteredInCell('25%', 2, tableY, 8, font);
+                drawCenteredInCell('50%', 3, tableY, 8, font);
+                drawCenteredInCell('75%', 4, tableY, 8, font);
+                drawCenteredInCell('100%', 5, tableY, 8, font);
+                drawCenteredInCell('5', 6, tableY, 8, font);
             }
             
             // Define evaluation criteria based on document type
-            const criteria = isLabReport ? [
+            const criteriaList = isLabReport ? [
                 { name: 'Understanding', mark: '3' },
                 { name: 'Analysis', mark: '4' },
                 { name: 'Implementation', mark: '8' },
@@ -385,46 +400,37 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
             ] : [
                 { name: 'Clarity', mark: '1' },
                 { name: 'Content Quality', mark: '2' },
-                { name: 'Spelling &\\nGrammar', mark: '1' },
-                { name: 'Organization &\\nFormatting', mark: '1' }
+                { name: 'Spelling & Grammar', mark: '1' },
+                { name: 'Organization', mark: '1' }
             ];
             
             // Draw criteria rows
-            criteria.forEach(item => {
+            criteriaList.forEach(item => {
                 tableY -= 30;
-                // Draw row borders
                 coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 30, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
-                coverPage.drawLine({ start: { x: 155, y: tableY + 15 }, end: { x: 155, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 185, y: tableY + 15 }, end: { x: 185, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 265, y: tableY + 15 }, end: { x: 265, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 345, y: tableY + 15 }, end: { x: 345, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 425, y: tableY + 15 }, end: { x: 425, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-                coverPage.drawLine({ start: { x: 475, y: tableY + 15 }, end: { x: 475, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
+                cols.slice(0, -1).forEach(c => {
+                    coverPage.drawLine({ start: { x: c.x + c.w, y: tableY + 15 }, end: { x: c.x + c.w, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
+                });
                 
-                // Handle multi-line text for assignment
-                if (!isLabReport && item.name.includes('\\n')) {
-                    const lines = item.name.split('\\n');
-                    coverPage.drawText(lines[0], { x: 80, y: tableY + 3, size: 8, font });
-                    coverPage.drawText(lines[1], { x: 80, y: tableY - 7, size: 8, font });
-                } else {
-                    coverPage.drawText(item.name, { x: 80, y: tableY, size: 8, font });
-                }
-                coverPage.drawText(item.mark, { x: isLabReport ? 165 : 168, y: tableY, size: 8, font });
+                drawCenteredInCell(item.name, 0, tableY, 8, font);
+                drawCenteredInCell(item.mark, 1, tableY, 8, font);
             });
             
             // Total marks row
             tableY -= 30;
             coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 30, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
             coverPage.drawLine({ start: { x: 475, y: tableY + 15 }, end: { x: 475, y: tableY - 15 }, thickness: 1, color: rgb(0, 0, 0) });
-            coverPage.drawText('Total obtained mark', { x: 90, y: tableY - 2, size: 8, font });
+            
+            // Left-align 'Total obtained mark' with padding
+            coverPage.drawText('Total obtained mark', { x: 85, y: tableY - (8 / 4), size: 8, font });
             
             // Comments section
             tableY -= 60;
             coverPage.drawRectangle({ x: 75, y: tableY - 15, width: 445, height: 60, borderWidth: 1, color: rgb(1, 1, 1), borderColor: rgb(0, 0, 0), opacity: 0 });
             coverPage.drawText('Comments', { x: 90, y: tableY + 30, size: 8, font });
             
-            // Add student and course information
-            let infoY = 350;
+            // Add student and course information with more whitespace from table
+            let infoY = 320;
             coverPage.drawText(`Semester: ${semester || 'Unknown'}`, { x: 75, y: infoY, size: 11, font });
             infoY -= 25;
             coverPage.drawText(`Student Name: ${studentName || 'Unknown'}`, { x: 75, y: infoY, size: 11, font });
@@ -445,7 +451,6 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
             // Format and add submission date
             let formattedDate;
             if (submitDate && submitDate.trim() !== '') {
-                // Use the already formatted date from the input field
                 formattedDate = submitDate;
             } else {
                 const today = new Date();
@@ -461,17 +466,12 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
         for(const file of filesArray){
             if(file.type.startsWith('image/')){
                 try {
-                    // Compress image before embedding
                     const compressedBlob = await compressImage(file, 0.8, 1200, 1600);
                     const imgBytes = await compressedBlob.arrayBuffer();
-                    
-                    // Embed compressed image (always as JPEG for better compression)
                     const img = await pdfDoc.embedJpg(imgBytes);
                     
-                    // Scale image to fit A4 page while maintaining aspect ratio
-                    const maxWidth = 545;  // A4 width minus margins
-                    const maxHeight = 792; // A4 height minus margins
-                    
+                    const maxWidth = 545;
+                    const maxHeight = 792;
                     let { width, height } = img;
                     const aspectRatio = width / height;
                     
@@ -484,7 +484,6 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
                         width = height * aspectRatio;
                     }
                     
-                    // Center image on new page
                     const imgPage = pdfDoc.addPage([595, 842]);
                     const x = (595 - width) / 2;
                     const y = (842 - height) / 2;
@@ -494,12 +493,10 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
                 }
             } else if(file.type === 'application/pdf'){
                 try {
-                    // Load and merge PDF pages
                     const pdfBytes = await file.arrayBuffer();
                     const uploadPdf = await PDFDocument.load(pdfBytes);
                     const pageCount = uploadPdf.getPageCount();
                     
-                    // Copy all pages from uploaded PDF
                     for (let i = 0; i < pageCount; i++) {
                         const [copiedPage] = await pdfDoc.copyPages(uploadPdf, [i]);
                         pdfDoc.addPage(copiedPage);
@@ -515,7 +512,6 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
         const blob = new Blob([pdfBytes], { type: 'application/pdf' });
         const blobUrl = URL.createObjectURL(blob);
 
-        // Calculate and display file size
         const fileSizeBytes = pdfBytes.length;
         const fileSizeMB = (fileSizeBytes / (1024 * 1024)).toFixed(2);
         const fileSizeKB = (fileSizeBytes / 1024).toFixed(0);
@@ -523,46 +519,33 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
         
         document.getElementById('fileSizeInfo').textContent = `File size: ${sizeDisplay}`;
 
-        // Detect mobile device
         const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
-        
-        // Show preview section with generated PDF
         document.getElementById('previewSection').style.display = 'block';
         
         if (isMobile) {
-            // Hide iframe and show mobile fallback
             document.getElementById('preview').style.display = 'none';
             document.getElementById('mobilePreview').style.display = 'block';
-            
-            // Set up open PDF button
             document.getElementById('openPdfBtn').onclick = () => {
                 window.open(blobUrl, '_blank');
             };
         } else {
-            // Show iframe preview on desktop
             document.getElementById('preview').style.display = 'block';
             document.getElementById('mobilePreview').style.display = 'none';
             document.getElementById('preview').src = blobUrl;
         }
         
         document.getElementById('downloadName').value = document.getElementById('outputName').value || 'DIU.pdf';
-
-        // Store blob URL for download
         window.currentPdfBlob = blobUrl;
         
-        // Reset button state
         btn.disabled = false;
         btn.innerHTML = originalContent;
         btn.style.opacity = '1';
         
-        // Scroll to preview section
         document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
 
     } catch (error) {
         console.error('Error generating PDF:', error);
         alert('Error generating PDF: ' + error.message);
-        
-        // Reset button state on error
         btn.disabled = false;
         btn.innerHTML = originalContent;
         btn.style.opacity = '1';
@@ -571,7 +554,6 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 
 /**
  * Download Handler
- * Triggers PDF download with user-specified filename
  */
 document.getElementById('downloadBtn').addEventListener('click', () => {
     if (window.currentPdfBlob) {
@@ -584,7 +566,6 @@ document.getElementById('downloadBtn').addEventListener('click', () => {
 
 /**
  * BLC Button Handler
- * Opens BLC website in new tab
  */
 document.getElementById('blcBtn').addEventListener('click', () => {
     window.open('https://elearn.daffodilvarsity.edu.bd/', '_blank');
