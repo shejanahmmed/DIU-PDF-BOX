@@ -669,9 +669,46 @@ select {
     transition: all 0.2s ease;
 }
 
-.social-pills .github { background: #24292e; color: white; }
-.social-pills .linkedin { background: #0077b5; color: white; }
-.social-pills .email { background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color); }
+.social-pills .website { 
+    background: #10b981; 
+    color: white; 
+    border: 1px solid rgba(255,255,255,0.1); 
+}
+.social-pills .github { 
+    background: #1a1f23; 
+    color: white; 
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.social-pills .linkedin { 
+    background: #0077b5; 
+    color: white; 
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.social-pills .facebook { 
+    background: #1877f2; 
+    color: white; 
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.social-pills .instagram { 
+    background: #ed505c;
+    color: white; 
+    border: 1px solid rgba(255,255,255,0.1);
+}
+.social-pills .email { 
+    background: #e34133; 
+    color: white; 
+    border: 1px solid rgba(255,255,255,0.1); 
+}
+
+/* Ensure icons inside colored pills are bright */
+.social-pills .github i, 
+.social-pills .linkedin i,
+.social-pills .facebook i,
+.social-pills .instagram i,
+.social-pills .email i,
+.social-pills .website i {
+    color: white !important;
+}
 
 .social-pills .pill:hover {
     transform: translateY(-2px);
