@@ -13,6 +13,68 @@ const hiddenDateInput = document.getElementById('hiddenDate');
 let filesArray = [];
 
 /**
+ * Update Page Numbers
+ * Re-indexes all cards to show correct sequence
+ */
+function updatePageNumbers() {
+    const items = imageList.querySelectorAll('.image-item');
+    items.forEach((item, index) => {
+        const badge = item.querySelector('.page-badge');
+        if (badge) {
+            badge.textContent = (index + 1).toString().padStart(2, '0');
+        }
+    });
+}
+
+/**
+ * Initialize Permanent Cover Card
+ */
+function renderCoverCard() {
+    if (document.getElementById('coverCard')) return;
+
+    const item = document.createElement('div');
+    item.className = 'image-item';
+    item.id = 'coverCard';
+    item.style.cursor = 'default';
+    
+    // Page Badge
+    const badge = document.createElement('div');
+    badge.className = 'page-badge';
+    badge.textContent = '01';
+    item.appendChild(badge);
+    
+    // Lock/Grip Icon (Disabled style)
+    const handle = document.createElement('div');
+    handle.className = 'drag-handle';
+    handle.style.opacity = '0.3';
+    handle.style.cursor = 'not-allowed';
+    handle.innerHTML = '<i class="fas fa-lock"></i>';
+    item.appendChild(handle);
+    
+    // Icon (Same as PDF)
+    const pdfIcon = document.createElement('div');
+    pdfIcon.className = 'pdf-icon';
+    pdfIcon.innerHTML = '<i class="fas fa-file-invoice"></i>';
+    item.appendChild(pdfIcon);
+    
+    // File Info
+    const info = document.createElement('div');
+    info.className = 'file-info';
+    info.textContent = 'DIU COVER PAGE (Auto-generated)';
+    item.appendChild(info);
+    
+    // Empty placeholder for remove btn slot to keep alignment
+    const spacer = document.createElement('div');
+    spacer.style.width = '2rem';
+    item.appendChild(spacer);
+    
+    imageList.prepend(item);
+    updatePageNumbers();
+}
+
+// Initial Render removed - now renders on first upload
+
+/**
  * Image Compression Utility
  * Compresses images to reduce file size while maintaining quality
  */
@@ -69,6 +131,11 @@ fileInput.addEventListener('change', (e) => {
     if (newFiles.length !== e.target.files.length) {
         alert('Some files were ignored. Only images and PDF files are supported.');
     }
+
+    // Show Cover Card if this is the first upload
+    if (filesArray.length === 0 && newFiles.length > 0) {
+        renderCoverCard();
+    }
     
     // Append new files to existing array
     const startIndex = filesArray.length;
@@ -76,56 +143,84 @@ fileInput.addEventListener('change', (e) => {
     
     // Create UI elements for each uploaded file
     newFiles.forEach((file, index) => {
-        // Create file item container
         const item = document.createElement('div');
-        item.style.cssText = 'display:flex;align-items:center;gap:10px;padding:12px;border:1px solid rgba(255,255,255,0.15);margin:8px 0;cursor:grab;background:rgba(255,255,255,0.08);backdrop-filter:blur(10px);border-radius:8px;color:#fff';
+        item.className = 'image-item';
         item.dataset.index = startIndex + index;
         
-        // Add file preview (image thumbnail or PDF icon)
+        // Page Badge
+        const badge = document.createElement('div');
+        badge.className = 'page-badge';
+        item.appendChild(badge);
+
+        // Drag Handle
+        const handle = document.createElement('div');
+        handle.className = 'drag-handle';
+        handle.innerHTML = '<i class="fas fa-grip-vertical"></i>';
+        item.appendChild(handle);
+        
+        // Thumbnail or PDF Icon
         if(file.type.startsWith('image/')){
             const img = document.createElement('img');
             img.src = URL.createObjectURL(file);
-            img.style.cssText = 'width:50px;height:50px;object-fit:cover';
             item.appendChild(img);
         } else {
-            const icon = document.createElement('div');
-            icon.textContent = '📄';
-            icon.style.cssText = 'width:50px;height:50px;display:flex;align-items:center;justify-content:center;font-size:24px;background:rgba(255,255,255,0.1);border-radius:6px';
-            item.appendChild(icon);
+            const pdfIcon = document.createElement('div');
+            pdfIcon.className = 'pdf-icon';
+            pdfIcon.innerHTML = '<i class="fas fa-file-pdf"></i>';
+            item.appendChild(pdfIcon);
         }
         
-        // Add file name
-        const name = document.createElement('span');
-        name.textContent = file.name;
-        item.appendChild(name);
+        // File Info
+        const info = document.createElement('div');
+        info.className = 'file-info';
+        info.textContent = file.name;
+        item.appendChild(info);
         
-        // Add remove button with hover effects
+        // Remove Button
         const removeBtn = document.createElement('button');
-        removeBtn.textContent = '×';
-        removeBtn.style.cssText = 'background:rgba(255,107,107,0.8);color:white;border:none;border-radius:50%;width:24px;height:24px;cursor:pointer;margin-left:auto;font-size:14px;font-weight:bold;transition:all 0.3s ease';
-        removeBtn.onmouseenter = () => removeBtn.style.background = 'rgba(255,107,107,1)';
-        removeBtn.onmouseleave = () => removeBtn.style.background = 'rgba(255,107,107,0.8)';
-        removeBtn.onclick = () => {
+        removeBtn.className = 'remove-btn';
+        removeBtn.innerHTML = '<i class="fas fa-trash-alt"></i>';
+        removeBtn.onclick = (e) => {
+            e.stopPropagation();
             const fileIndex = parseInt(item.dataset.index);
             filesArray.splice(fileIndex, 1);
             item.remove();
-            // Update indices after removal
+            
+            // Check if we need to remove cover card (if list is empty)
+            if (filesArray.length === 0) {
+                const cover = document.getElementById('coverCard');
+                if (cover) cover.remove();
+            }
+
             Array.from(imageList.children).forEach((child, idx) => {
                 child.dataset.index = idx;
             });
+            updatePageNumbers();
         };
         item.appendChild(removeBtn);
         
         imageList.appendChild(item);
     });
     
+    updatePageNumbers();
+
     // Initialize drag-and-drop sorting functionality
     if (!imageList.sortable) {
         imageList.sortable = new Sortable(imageList, { 
-            animation: 150,
+            animation: 250,
+            handle: '.drag-handle',
+            ghostClass: 'sortable-ghost',
+            dragClass: 'sortable-drag',
+            filter: '#coverCard',
+            onMove: function(evt) {
+                return evt.related.id !== 'coverCard';
+            },
             onEnd: function(evt) {
                 // Reorder files array based on new DOM order
-                const newOrder = Array.from(imageList.children).map(item => parseInt(item.dataset.index));
+                const newOrder = Array.from(imageList.children)
+                    .filter(item => item.id !== 'coverCard') // Ignore cover card in array
+                    .map(item => parseInt(item.dataset.index));
+                
                 const reorderedFiles = newOrder.map(index => filesArray[index]);
                 filesArray = reorderedFiles;
                 
@@ -133,6 +228,8 @@ fileInput.addEventListener('change', (e) => {
                 Array.from(imageList.children).forEach((item, index) => {
                     item.dataset.index = index;
                 });
+
+                updatePageNumbers();
             }
         });
     }

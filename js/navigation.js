@@ -49,6 +49,17 @@ function handleReveal() {
 }
 
 /**
+ * Update logo based on theme
+ */
+function updateLogo() {
+    const isDark = document.body.classList.contains('dark-theme');
+    const logoImg = document.querySelector('.logo-img');
+    if (logoImg) {
+        logoImg.src = isDark ? 'Logos/DIU PDF BOX(Light).png' : 'Logos/DIU PDF BOX(Dark).png';
+    }
+}
+
+/**
  * Theme Management
  */
 function toggleTheme() {
@@ -64,6 +75,7 @@ function toggleTheme() {
         if (themeIcon) themeIcon.className = 'fas fa-sun';
         localStorage.setItem('theme', 'dark');
     }
+    updateLogo();
 }
 
 /**
@@ -71,11 +83,11 @@ function toggleTheme() {
  */
 function toggleMobileMenu() {
     const mobileNav = document.getElementById('mobile-nav');
-    const hamburger = document.querySelector('.hamburger-menu');
-    if (!mobileNav || !hamburger) return;
+    const icon = document.querySelector('.hamburger-menu i');
+    if (!mobileNav) return;
 
     mobileNav.classList.toggle('active');
-    const icon = hamburger.querySelector('i');
+    
     if (mobileNav.classList.contains('active')) {
         if (icon) icon.className = 'fas fa-times';
     } else {
@@ -85,14 +97,11 @@ function toggleMobileMenu() {
 
 function closeMobileMenu() {
     const mobileNav = document.getElementById('mobile-nav');
-    const hamburger = document.querySelector('.hamburger-menu');
+    const icon = document.querySelector('.hamburger-menu i');
     if (!mobileNav) return;
 
     mobileNav.classList.remove('active');
-    if (hamburger) {
-        const icon = hamburger.querySelector('i');
-        if (icon) icon.className = 'fas fa-bars';
-    }
+    if (icon) icon.className = 'fas fa-bars';
 }
 
 // Close mobile menu when clicking outside
@@ -168,6 +177,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Initialize active nav
     updateActiveNav();
+
+    // Initialize logo
+    updateLogo();
+
+    // Close mobile menu when links are clicked
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            closeMobileMenu();
+        });
+    });
 
     // Initialize scroll reveal
     handleReveal();
