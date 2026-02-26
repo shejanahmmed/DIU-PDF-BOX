@@ -81,6 +81,12 @@ This application is designed with **Privacy by Design** principles:
 
 ---
 
+## 📄 License
+
+This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) file for details.
+
+---
+
 ## 🌐 Deployment
 
 Live version available at: [**https://shejanahmmed.github.io/DIU-PDF-BOX/**](https://shejanahmmed.github.io/DIU-PDF-BOX/)
