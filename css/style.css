@@ -59,6 +59,8 @@ html {
 body {
   font-family: 'Inter', -apple-system, system-ui, sans-serif;
   background-color: var(--bg-secondary);
+  background-image: radial-gradient(var(--border-color) 1px, transparent 1px);
+  background-size: 32px 32px;
   color: var(--text-primary);
   line-height: 1.5;
   -webkit-font-smoothing: antialiased;
