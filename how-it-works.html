@@ -5,51 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- SEO Meta Tags -->
-    <title>How to Use DIU PDF BOX - Step by Step Guide</title>
-    <meta name="description" content="Learn how to create DIU assignment covers and merge PDFs with our step-by-step guide. Easy tutorial for Daffodil International University students.">
-    <meta name="keywords" content="DIU PDF tutorial, how to create assignment cover, PDF merge guide, DIU student guide, assignment cover tutorial, PDF tools guide">
+    <title>How It Works | DIU PDF BOX - Step-by-Step Guide</title>
+    <meta name="description" content="A professional guide on how to use DIU PDF BOX. Learn to generate assignment covers and merge PDFs in seconds.">
     <meta name="author" content="Shejan Ahmmed">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="How to Use DIU PDF BOX - Step by Step Guide">
-    <meta property="og:description" content="Learn how to create DIU assignment covers and merge PDFs with our step-by-step guide. Easy tutorial for Daffodil International University students.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shejanahmmed.github.io/DIU-PDF-BOX/how-it-works.html">
-    <meta property="og:image" content="https://shejanahmmed.github.io/DIU-PDF-BOX/Logos/DIU PDF BOX.png">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://shejanahmmed.github.io/DIU-PDF-BOX/how-it-works.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
     
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="scroll-progress"></div>
+    
     <!-- Navigation Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <a href="index.html">
+                <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
                     <img src="Logos/DIU PDF BOX.png" alt="DIU PDF" class="logo-img">
                     <span class="logo-text">DIU PDF BOX</span>
                 </a>
             </div>
             
-            <!-- Desktop Navigation -->
             <nav class="nav desktop-nav">
-                <a href="index.html" class="nav-link">
+                <a href="index.html" class="nav-link" id="home-link">
                     <i class="fas fa-home"></i> Home
                 </a>
-                <a href="about.html" class="nav-link">
+                <a href="about.html" class="nav-link" id="about-link">
                     <i class="fas fa-info-circle"></i> About
                 </a>
-                <a href="how-it-works.html" class="nav-link active">
+                <a href="how-it-works.html" class="nav-link active" id="how-link">
                     <i class="fas fa-question-circle"></i> How It Works
                 </a>
                 <a href="https://studentportal.diu.edu.bd/" target="_blank" class="nav-link">
@@ -61,20 +49,15 @@
             </nav>
             
             <div class="header-controls">
-                <div class="theme-controls">
-                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-                        <i class="fas fa-sun" id="theme-icon"></i>
-                    </button>
-                </div>
-                
-                <!-- Mobile Hamburger Menu -->
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
                 <button class="hamburger-menu" onclick="toggleMobileMenu()" title="Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
         
-        <!-- Mobile Navigation Menu -->
         <nav class="mobile-nav" id="mobile-nav">
             <a href="index.html" class="mobile-nav-link">
                 <i class="fas fa-home"></i> Home
@@ -96,142 +79,92 @@
 
     <!-- Main Content -->
     <div class="container">
-        <section class="guide-content">
-            <h1 class="reveal"><i class="fas fa-question-circle"></i> How to Use DIU PDF BOX</h1>
-            <p class="guide-intro reveal">Follow this simple step-by-step guide to create professional assignment covers and merge your PDFs in minutes!</p>
+        <!-- Professional Hero Section -->
+        <section class="about-hero reveal">
+            <span class="badge">Comprehensive Guide</span>
+            <h1>Simple steps to <span>Perfect Submissions</span>.</h1>
+            <p class="hero-text">Master DIU PDF BOX in minutes. Our intuitive workflow is designed to save you time and ensure your university documents are perfectly formatted and ready for BLC.</p>
+        </section>
 
+        <!-- Process Timeline -->
+        <div class="process-timeline">
             <!-- Step 1 -->
-            <div class="step-section reveal-left">
-                <div class="step-header">
-                    <span class="step-number">1</span>
-                    <h2>Fill Document Settings</h2>
-                </div>
-                <div class="step-content">
-                    <p>Start by configuring your document preferences:</p>
-                    <ul>
-                        <li><strong>Document Type:</strong> Choose from Assignment, Lab Task, Lab Report or Quiz</li>
-                        <li><strong>Output File Name:</strong> Enter your desired PDF filename (e.g., "CSE101_Assignment.pdf")</li>
-                    </ul>
+            <div class="step-card reveal-left">
+                <div class="step-badge">Step 01</div>
+                <div class="step-icon"><i class="fas fa-edit"></i></div>
+                <div class="step-info">
+                    <h3>Configure Metadata</h3>
+                    <p>Input your academic credentials, course details, and instructor information. Choose your document type to load the correct DIU template.</p>
                 </div>
             </div>
 
             <!-- Step 2 -->
-            <div class="step-section reveal-right">
-                <div class="step-header">
-                    <span class="step-number">2</span>
-                    <h2>Enter Academic Information</h2>
-                </div>
-                <div class="step-content">
-                    <p>Provide your semester and submission details:</p>
-                    <ul>
-                        <li><strong>Semester:</strong> Enter current semester (e.g., "Spring 2024")</li>
-                        <li><strong>Submit Date:</strong> Click the calendar icon to select your submission date</li>
-                    </ul>
+            <div class="step-card reveal-right">
+                <div class="step-badge">Step 02</div>
+                <div class="step-icon"><i class="fas fa-cloud-upload-alt"></i></div>
+                <div class="step-info">
+                    <h3>Asset Orchestration</h3>
+                    <p>Drag and drop your images or existing PDFs into the secure upload zone. Use the interactive grid to reorder pages with precision.</p>
                 </div>
             </div>
 
             <!-- Step 3 -->
-            <div class="step-section reveal-left">
-                <div class="step-header">
-                    <span class="step-number">3</span>
-                    <h2>Add Student Details</h2>
-                </div>
-                <div class="step-content">
-                    <p>Fill in your personal information:</p>
-                    <ul>
-                        <li><strong>Student Name:</strong> Your full name as registered in DIU</li>
-                        <li><strong>Student ID:</strong> Your DIU student ID number</li>
-                        <li><strong>Batch:</strong> Your batch number (e.g., "55")</li>
-                        <li><strong>Section:</strong> Your section (e.g., "A", "B", "C")</li>
-                    </ul>
+            <div class="step-card reveal-left">
+                <div class="step-badge">Step 03</div>
+                <div class="step-icon"><i class="fas fa-magic"></i></div>
+                <div class="step-info">
+                    <h3>One-Click Synthesis</h3>
+                    <p>Initiate the generation process. Our client-side engine will merge your assets and the cover page into a single, high-resolution PDF stream.</p>
                 </div>
             </div>
 
             <!-- Step 4 -->
-            <div class="step-section reveal-right">
-                <div class="step-header">
-                    <span class="step-number">4</span>
-                    <h2>Course Information</h2>
-                </div>
-                <div class="step-content">
-                    <p>Enter details about your course:</p>
-                    <ul>
-                        <li><strong>Course Code:</strong> The official course code (e.g., "CSE101")</li>
-                        <li><strong>Course Name:</strong> Full course title (e.g., "Programming Fundamentals")</li>
-                        <li><strong>Teacher Name:</strong> Your instructor's name</li>
-                        <li><strong>Designation:</strong> Teacher's position (e.g., "Professor", "Lecturer")</li>
-                    </ul>
+            <div class="step-card reveal-right">
+                <div class="step-badge">Step 04</div>
+                <div class="step-icon"><i class="fas fa-download"></i></div>
+                <div class="step-info">
+                    <h3>Preview & Export</h3>
+                    <p>Review the generated document in real-time. Once verified, export your professional PDF directly to your local device storage.</p>
                 </div>
             </div>
+        </div>
 
-            <!-- Step 5 -->
-            <div class="step-section reveal-left">
-                <div class="step-header">
-                    <span class="step-number">5</span>
-                    <h2>Upload Your Files</h2>
+        <!-- FAQ Section -->
+        <section class="faq-grid-section reveal">
+            <div class="tech-header" style="text-align: center;">
+                <h2>Common <span>Questions</span></h2>
+                <p>Everything you need to know about our privacy-first PDF generation platform.</p>
+            </div>
+            <div class="features-grid">
+                <div class="faq-card">
+                    <div class="faq-icon"><i class="fas fa-file-image"></i></div>
+                    <h4>Supported Formats</h4>
+                    <p>We support high-resolution JPG, PNG, and PDF files. You can mix and match formats seamlessly in a single document.</p>
                 </div>
-                <div class="step-content">
-                    <p>Add your assignment content:</p>
-                    <ul>
-                        <li><strong>Drag & Drop:</strong> Simply drag files into the upload area</li>
-                        <li><strong>Click to Browse:</strong> Click the upload area to select files</li>
-                        <li><strong>Supported Formats:</strong> Images (JPG, PNG) and PDF files</li>
-                    </ul>
+                <div class="faq-card">
+                    <div class="faq-icon"><i class="fas fa-compress"></i></div>
+                    <h4>Smart Compression</h4>
+                    <p>Our engine automatically optimizes image assets to ensure your final PDF is compact enough for BLC uploads without losing quality.</p>
+                </div>
+                <div class="faq-card">
+                    <div class="faq-icon"><i class="fas fa-shield-alt"></i></div>
+                    <h4>Data Sovereignty</h4>
+                    <p>Your documents never leave your browser. All processing is 100% local, ensuring complete privacy and security.</p>
+                </div>
+                <div class="faq-card">
+                    <div class="faq-icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h4>Cross-Platform</h4>
+                    <p>Built with a mobile-first philosophy, DIU PDF BOX works flawlessly on smartphones, tablets, and desktop workstations.</p>
                 </div>
             </div>
+        </section>
 
-            <!-- Step 6 -->
-            <div class="step-section reveal-right">
-                <div class="step-header">
-                    <span class="step-number">6</span>
-                    <h2>Generate & Download</h2>
-                </div>
-                <div class="step-content">
-                    <p>Create your final PDF:</p>
-                    <ul>
-                        <li>Click the <strong>"Generate PDF & Preview"</strong> button</li>
-                        <li>Wait for processing (usually takes a few seconds)</li>
-                        <li>Preview your generated PDF</li>
-                        <li>Download the final document to your device</li>
-                    </ul>
-                </div>
-            </div>
-
-            <!-- FAQ Section -->
-            <div class="faq-section">
-                <h2 class="reveal"><i class="fas fa-question"></i> Frequently Asked Questions</h2>
-                
-                <div class="faq-item reveal">
-                    <h3>What file formats are supported?</h3>
-                    <p>DIU PDF BOX supports JPG, PNG images and PDF files. You can mix different formats in a single document.</p>
-                </div>
-
-                <div class="faq-item reveal">
-                    <h3>Is there a file size limit?</h3>
-                    <p>For optimal performance, we recommend keeping individual files under 10MB. The tool works entirely in your browser.</p>
-                </div>
-
-                <div class="faq-item reveal">
-                    <h3>Do I need to create an account?</h3>
-                    <p>No! DIU PDF BOX is completely free and requires no registration. Just visit the site and start creating.</p>
-                </div>
-
-                <div class="faq-item reveal">
-                    <h3>Can I use this on my phone?</h3>
-                    <p>Absolutely! DIU PDF BOX is fully responsive and works perfectly on smartphones and tablets.</p>
-                </div>
-
-                <div class="faq-item reveal">
-                    <h3>Are my files stored anywhere?</h3>
-                    <p>No, all processing happens locally in your browser. Your files are never uploaded to any server.</p>
-                </div>
-            </div>
-
-            <div class="cta-section reveal">
-                <h2>Ready to create your first DIU assignment?</h2>
-                <a href="index.html" class="cta-button">
-                    <i class="fas fa-rocket"></i> Start Creating Now
-                </a>
+        <!-- CTA Section -->
+        <section class="cta-section-simple reveal">
+            <div class="cta-card">
+                <h2>Ready to start?</h2>
+                <p>Create your first professional DIU document today.</p>
+                <a href="index.html" class="cta-button primary">Go to Home <i class="fas fa-rocket"></i></a>
             </div>
         </section>
     </div>
@@ -241,19 +174,18 @@
         <div class="footer-content">
             <p>&copy; 2026 DIU PDF BOX.</p>
             <p>Made by <strong>Shejan</strong></p>
-            <!-- Social Media Links -->
             <div class="footer-links">
-                <a href="https://www.linkedin.com/in/farjan-ahmmed/" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
+                <a href="https://www.linkedin.com/in/farjan-ahmmed/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://github.com/shejanahmmed" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
+                <a href="https://github.com/shejanahmmed" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.facebook.com/beingshejan/" target="_blank">
-                    <i class="fab fa-facebook"></i> Facebook
+                <a href="https://www.facebook.com/beingshejan/" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook"></i>
                 </a>
-                <a href="https://www.instagram.com/iamshejan" target="_blank">
-                    <i class="fab fa-instagram"></i> Instagram
+                <a href="https://www.instagram.com/iamshejan" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
                 </a>
             </div>
         </div>
