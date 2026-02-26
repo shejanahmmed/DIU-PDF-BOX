@@ -5,51 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     
     <!-- SEO Meta Tags -->
-    <title>About DIU PDF BOX - Free PDF Tools Creator</title>
-    <meta name="description" content="Learn about DIU PDF BOX creator Farjan Ahmmed, a Software Engineering student at Daffodil International University. Discover the story behind this free PDF tool for students.">
-    <meta name="keywords" content="DIU PDF BOX creator, Shejan, Farjana Ahmmed, Daffodil International University, Software Engineering student, PDF tools developer, about DIU PDF">
+    <title>About | DIU PDF BOX - Professional Academic Tools</title>
+    <meta name="description" content="Learn about DIU PDF BOX and its creator Farjan Ahmmed (Shejan). A privacy-first tool built for Daffodil International University students.">
     <meta name="author" content="Shejan Ahmmed">
-    
-    <!-- Open Graph Meta Tags -->
-    <meta property="og:title" content="About DIU PDF BOX - Free PDF Tools Creator">
-    <meta property="og:description" content="Learn about DIU PDF BOX creator Shejan Ahmmed, a Software Engineering student at Daffodil International University. Discover the story behind this free PDF tool for students.">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://shejanahmmed.github.io/DIU-PDF-BOX/about.html">
-    <meta property="og:image" content="https://shejanahmmed.github.io/DIU-PDF-BOX/Logos/DIU PDF BOX.png">
-    
-    <!-- Canonical URL -->
-    <link rel="canonical" href="https://shejanahmmed.github.io/DIU-PDF-BOX/about.html">
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="apple-touch-icon" href="favicon.svg">
     
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
     <div class="scroll-progress"></div>
+    
     <!-- Navigation Header -->
     <header class="header">
         <div class="header-content">
             <div class="logo">
-                <a href="index.html">
+                <a href="index.html" style="text-decoration: none; display: flex; align-items: center; gap: 0.75rem;">
                     <img src="Logos/DIU PDF BOX.png" alt="DIU PDF" class="logo-img">
                     <span class="logo-text">DIU PDF BOX</span>
                 </a>
             </div>
             
-            <!-- Desktop Navigation -->
             <nav class="nav desktop-nav">
-                <a href="index.html" class="nav-link">
+                <a href="index.html" class="nav-link" id="home-link">
                     <i class="fas fa-home"></i> Home
                 </a>
-                <a href="about.html" class="nav-link active">
+                <a href="about.html" class="nav-link active" id="about-link">
                     <i class="fas fa-info-circle"></i> About
                 </a>
-                <a href="how-it-works.html" class="nav-link">
+                <a href="how-it-works.html" class="nav-link" id="how-link">
                     <i class="fas fa-question-circle"></i> How It Works
                 </a>
                 <a href="https://studentportal.diu.edu.bd/" target="_blank" class="nav-link">
@@ -61,20 +49,15 @@
             </nav>
             
             <div class="header-controls">
-                <div class="theme-controls">
-                    <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
-                        <i class="fas fa-sun" id="theme-icon"></i>
-                    </button>
-                </div>
-                
-                <!-- Mobile Hamburger Menu -->
+                <button class="theme-toggle" onclick="toggleTheme()" title="Toggle theme">
+                    <i class="fas fa-sun" id="theme-icon"></i>
+                </button>
                 <button class="hamburger-menu" onclick="toggleMobileMenu()" title="Menu">
                     <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
         
-        <!-- Mobile Navigation Menu -->
         <nav class="mobile-nav" id="mobile-nav">
             <a href="index.html" class="mobile-nav-link">
                 <i class="fas fa-home"></i> Home
@@ -96,79 +79,67 @@
 
     <!-- Main Content -->
     <div class="container">
-        <section class="about-content">
-            <h1 class="reveal"><i class="fas fa-user-graduate"></i> About DIU PDF BOX</h1>
-            
-            <div class="about-section reveal-left">
-                <h2>👨‍💻 Meet the Creator</h2>
-                <p>Hi! I'm <strong>Farjan Ahmmed (Shejan)</strong>, a Software Engineering student at <strong>Daffodil International University</strong> pursuing my BSc degree.</p>
-                <p>Based in <strong>Dhaka, Bangladesh</strong>, I understand the daily struggles of creating properly formatted academic documents. I built this tool to help my fellow students streamline their workflow.</p>
-            </div>
+        <!-- Professional Hero Section -->
+        <section class="about-hero reveal">
+            <span class="badge">The Story Behind the Project</span>
+            <h1>Bridging the gap between <span>Academic Rigor</span> and <span>Efficiency</span>.</h1>
+            <p class="hero-text">DIU PDF BOX was born from a simple observation: students spend more time formatting documents than actually learning. We're here to change that.</p>
+        </section>
 
-            <div class="about-section reveal-right">
-                <h2>🎯 Why DIU PDF BOX?</h2>
-                <p>Every semester, DIU students spend countless hours formatting assignment covers, merging PDFs and organizing documents. I created DIU PDF BOX to solve these common problems:</p>
-                <ul>
-                    <li><strong>Time-consuming formatting</strong> - No more manual cover page creation</li>
-                    <li><strong>Inconsistent layouts</strong> - Professional, standardized templates</li>
-                    <li><strong>File management hassles</strong> - Easy PDF merging and organization</li>
-                    <li><strong>Mobile accessibility</strong> - Works perfectly on phones and tablets</li>
-                </ul>
-            </div>
-
-            <div class="about-section">
-                <h2 class="reveal">✨ Key Features</h2>
-                <div class="features-grid">
-                    <div class="feature-item reveal">
-                        <i class="fas fa-file-pdf"></i>
-                        <h3>Assignment Covers</h3>
-                        <p>Generate professional DIU assignment covers instantly</p>
+        <!-- Developer Profile Section -->
+        <section class="profile-grid">
+            <div class="profile-card reveal-left">
+                <div class="profile-header">
+                    <div class="profile-info">
+                        <h2>Farjan Ahmmed (Shejan)</h2>
+                        <p>Software Engineering Student</p>
+                        <span class="location"><i class="fas fa-map-marker-alt"></i> Dhaka, Bangladesh</span>
                     </div>
-                    <div class="feature-item reveal">
-                        <i class="fas fa-compress-arrows-alt"></i>
-                        <h3>PDF Merging</h3>
-                        <p>Combine multiple PDFs into one document</p>
-                    </div>
-                    <div class="feature-item reveal">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h3>Mobile Friendly</h3>
-                        <p>Works seamlessly on all devices</p>
-                    </div>
-                    <div class="feature-item reveal">
-                        <i class="fas fa-lock-open"></i>
-                        <h3>No Registration</h3>
-                        <p>Use all features without creating an account</p>
+                </div>
+                <div class="profile-body">
+                    <p>I am a passionate Software Engineering student at <strong>Daffodil International University</strong>, dedicated to building tools that solve real-world problems. My focus is on creating seamless user experiences and high-performance web applications.</p>
+                    <div class="social-pills">
+                        <a href="https://github.com/shejanahmmed" target="_blank" class="pill github"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="https://www.linkedin.com/in/farjan-ahmmed/" target="_blank" class="pill linkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                        <a href="mailto:farjan.swe@gmail.com" class="pill email"><i class="fas fa-envelope"></i> Email</a>
                     </div>
                 </div>
             </div>
 
-            <div class="about-section reveal">
-                <h2>🚀 Technology Stack</h2>
-                <p>DIU PDF BOX is built using modern web technologies:</p>
-                <ul>
-                    <li><strong>Frontend:</strong> HTML5, CSS3, JavaScript</li>
-                    <li><strong>PDF Processing:</strong> PDF-lib library</li>
-                    <li><strong>UI/UX:</strong> Responsive design with Font Awesome icons</li>
-                    <li><strong>Hosting:</strong> GitHub Pages for fast, reliable access</li>
+            <div class="vision-card reveal-right">
+                <div class="icon-box"><i class="fas fa-bullseye"></i></div>
+                <h3>Our Vision</h3>
+                <p>To empower every student at DIU with a suite of professional tools that automate the administrative overhead of academic life, allowing them to focus entirely on their intellectual growth.</p>
+                <ul class="vision-list">
+                    <li><i class="fas fa-check-circle"></i> Standardization across all departments.</li>
+                    <li><i class="fas fa-check-circle"></i> Privacy-first document processing.</li>
+                    <li><i class="fas fa-check-circle"></i> Open-source community driven.</li>
                 </ul>
             </div>
+        </section>
 
-            <div class="about-section reveal">
-                <h2>📞 Get in Touch</h2>
-                <p>Have suggestions, found a bug or want to contribute? I'd love to hear from you!</p>
-                <div class="contact-info">
-                    <p><i class="fas fa-envelope"></i> Email: <a href="mailto:farjan.swe@gmail.com">farjan.swe@gmail.com</a></p>
-                    <p><i class="fab fa-github"></i> GitHub: <a href="https://github.com/shejanahmmed" target="_blank">@shejanahmmed</a></p>
-                    <p><i class="fas fa-map-marker-alt"></i> Location: Dhaka, Bangladesh</p>
-                    <p><i class="fas fa-university"></i> University: Daffodil International University</p>
-                </div>
+        <!-- Technical Excellence Section -->
+        <section class="tech-section reveal">
+            <div class="tech-header">
+                <h2>Built for <span>Performance</span></h2>
+                <p>Leveraging cutting-edge client-side technologies to ensure your data stays where it belongs—with you.</p>
             </div>
-
-            <div class="cta-section reveal">
-                <h2>Ready to streamline your academic workflow?</h2>
-                <a href="index.html" class="cta-button">
-                    <i class="fas fa-arrow-right"></i> Start Using DIU PDF BOX
-                </a>
+            <div class="features-grid">
+                <div class="feature-item">
+                    <i class="fas fa-shield-alt" style="color: #10b981;"></i>
+                    <h3>Zero-Server Architecture</h3>
+                    <p>All PDF processing happens locally in your browser. No files are ever uploaded, ensuring 100% privacy.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-bolt" style="color: #f59e0b;"></i>
+                    <h3>Instant Synthesis</h3>
+                    <p>Powered by pdf-lib, generating high-resolution documents in milliseconds without any network latency.</p>
+                </div>
+                <div class="feature-item">
+                    <i class="fas fa-mobile-alt" style="color: #3b82f6;"></i>
+                    <h3>Adaptive Interface</h3>
+                    <p>A mobile-first design philosophy that works perfectly whether you're in the lab or on the go.</p>
+                </div>
             </div>
         </section>
     </div>
@@ -178,19 +149,18 @@
         <div class="footer-content">
             <p>&copy; 2026 DIU PDF BOX.</p>
             <p>Made by <strong>Shejan</strong></p>
-            <!-- Social Media Links -->
             <div class="footer-links">
-                <a href="https://www.linkedin.com/in/farjan-ahmmed/" target="_blank">
-                    <i class="fab fa-linkedin"></i> LinkedIn
+                <a href="https://www.linkedin.com/in/farjan-ahmmed/" target="_blank" title="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
                 </a>
-                <a href="https://github.com/shejanahmmed" target="_blank">
-                    <i class="fab fa-github"></i> GitHub
+                <a href="https://github.com/shejanahmmed" target="_blank" title="GitHub">
+                    <i class="fab fa-github"></i>
                 </a>
-                <a href="https://www.facebook.com/beingshejan/" target="_blank">
-                    <i class="fab fa-facebook"></i> Facebook
+                <a href="https://www.facebook.com/beingshejan/" target="_blank" title="Facebook">
+                    <i class="fab fa-facebook"></i>
                 </a>
-                <a href="https://www.instagram.com/iamshejan" target="_blank">
-                    <i class="fab fa-instagram"></i> Instagram
+                <a href="https://www.instagram.com/iamshejan" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
                 </a>
             </div>
         </div>
