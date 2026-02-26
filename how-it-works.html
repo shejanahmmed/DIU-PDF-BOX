@@ -30,6 +30,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
+    <div class="scroll-progress"></div>
     <!-- Navigation Header -->
     <header class="header">
         <div class="header-content">
@@ -68,9 +69,7 @@
                 
                 <!-- Mobile Hamburger Menu -->
                 <button class="hamburger-menu" onclick="toggleMobileMenu()" title="Menu">
-                    <span></span>
-                    <span></span>
-                    <span></span>
+                    <i class="fas fa-bars"></i>
                 </button>
             </div>
         </div>
@@ -98,11 +97,11 @@
     <!-- Main Content -->
     <div class="container">
         <section class="guide-content">
-            <h1><i class="fas fa-question-circle"></i> How to Use DIU PDF BOX</h1>
-            <p class="guide-intro">Follow this simple step-by-step guide to create professional assignment covers and merge your PDFs in minutes!</p>
+            <h1 class="reveal"><i class="fas fa-question-circle"></i> How to Use DIU PDF BOX</h1>
+            <p class="guide-intro reveal">Follow this simple step-by-step guide to create professional assignment covers and merge your PDFs in minutes!</p>
 
             <!-- Step 1 -->
-            <div class="step-section">
+            <div class="step-section reveal-left">
                 <div class="step-header">
                     <span class="step-number">1</span>
                     <h2>Fill Document Settings</h2>
@@ -113,15 +112,11 @@
                         <li><strong>Document Type:</strong> Choose from Assignment, Lab Task, Lab Report or Quiz</li>
                         <li><strong>Output File Name:</strong> Enter your desired PDF filename (e.g., "CSE101_Assignment.pdf")</li>
                     </ul>
-                    <div class="tip-box">
-                        <i class="fas fa-lightbulb"></i>
-                        <strong>Tip:</strong> Use descriptive filenames like "CourseCode_AssignmentName.pdf" for better organization
-                    </div>
                 </div>
             </div>
 
             <!-- Step 2 -->
-            <div class="step-section">
+            <div class="step-section reveal-right">
                 <div class="step-header">
                     <span class="step-number">2</span>
                     <h2>Enter Academic Information</h2>
@@ -132,15 +127,11 @@
                         <li><strong>Semester:</strong> Enter current semester (e.g., "Spring 2024")</li>
                         <li><strong>Submit Date:</strong> Click the calendar icon to select your submission date</li>
                     </ul>
-                    <div class="tip-box">
-                        <i class="fas fa-calendar-alt"></i>
-                        <strong>Note:</strong> The date will automatically format to DD/MM/YY for consistency
-                    </div>
                 </div>
             </div>
 
             <!-- Step 3 -->
-            <div class="step-section">
+            <div class="step-section reveal-left">
                 <div class="step-header">
                     <span class="step-number">3</span>
                     <h2>Add Student Details</h2>
@@ -157,7 +148,7 @@
             </div>
 
             <!-- Step 4 -->
-            <div class="step-section">
+            <div class="step-section reveal-right">
                 <div class="step-header">
                     <span class="step-number">4</span>
                     <h2>Course Information</h2>
@@ -174,7 +165,7 @@
             </div>
 
             <!-- Step 5 -->
-            <div class="step-section">
+            <div class="step-section reveal-left">
                 <div class="step-header">
                     <span class="step-number">5</span>
                     <h2>Upload Your Files</h2>
@@ -185,17 +176,12 @@
                         <li><strong>Drag & Drop:</strong> Simply drag files into the upload area</li>
                         <li><strong>Click to Browse:</strong> Click the upload area to select files</li>
                         <li><strong>Supported Formats:</strong> Images (JPG, PNG) and PDF files</li>
-                        <li><strong>Reorder:</strong> Drag uploaded files to change their order</li>
                     </ul>
-                    <div class="tip-box">
-                        <i class="fas fa-sort"></i>
-                        <strong>Pro Tip:</strong> You can reorder files by dragging them up or down in the list
-                    </div>
                 </div>
             </div>
 
             <!-- Step 6 -->
-            <div class="step-section">
+            <div class="step-section reveal-right">
                 <div class="step-header">
                     <span class="step-number">6</span>
                     <h2>Generate & Download</h2>
@@ -208,44 +194,40 @@
                         <li>Preview your generated PDF</li>
                         <li>Download the final document to your device</li>
                     </ul>
-                    <div class="success-box">
-                        <i class="fas fa-check-circle"></i>
-                        <strong>Success!</strong> Your professional DIU assignment is ready for submission
-                    </div>
                 </div>
             </div>
 
             <!-- FAQ Section -->
             <div class="faq-section">
-                <h2><i class="fas fa-question"></i> Frequently Asked Questions</h2>
+                <h2 class="reveal"><i class="fas fa-question"></i> Frequently Asked Questions</h2>
                 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3>What file formats are supported?</h3>
                     <p>DIU PDF BOX supports JPG, PNG images and PDF files. You can mix different formats in a single document.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3>Is there a file size limit?</h3>
                     <p>For optimal performance, we recommend keeping individual files under 10MB. The tool works entirely in your browser.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3>Do I need to create an account?</h3>
                     <p>No! DIU PDF BOX is completely free and requires no registration. Just visit the site and start creating.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3>Can I use this on my phone?</h3>
                     <p>Absolutely! DIU PDF BOX is fully responsive and works perfectly on smartphones and tablets.</p>
                 </div>
 
-                <div class="faq-item">
+                <div class="faq-item reveal">
                     <h3>Are my files stored anywhere?</h3>
                     <p>No, all processing happens locally in your browser. Your files are never uploaded to any server.</p>
                 </div>
             </div>
 
-            <div class="cta-section">
+            <div class="cta-section reveal">
                 <h2>Ready to create your first DIU assignment?</h2>
                 <a href="index.html" class="cta-button">
                     <i class="fas fa-rocket"></i> Start Creating Now
@@ -254,157 +236,11 @@
         </section>
     </div>
 
-    <style>
-        .guide-content {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        
-        .guide-intro {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .step-section {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 12px;
-            padding: 2rem;
-            margin-bottom: 2rem;
-        }
-        
-        .step-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
-        
-        .step-number {
-            background: #4f46e5;
-            color: white;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            margin-right: 1rem;
-        }
-        
-        .step-header h2 {
-            margin: 0;
-            color: #fff;
-        }
-        
-        .step-content ul {
-            margin: 1rem 0;
-            padding-left: 1.5rem;
-        }
-        
-        .step-content li {
-            margin-bottom: 0.5rem;
-        }
-        
-        .tip-box, .success-box {
-            background: rgba(79, 70, 229, 0.2);
-            border-left: 4px solid #4f46e5;
-            padding: 1rem;
-            margin-top: 1rem;
-            border-radius: 4px;
-        }
-        
-        .success-box {
-            background: rgba(34, 197, 94, 0.2);
-            border-left-color: #22c55e;
-        }
-        
-        .faq-section {
-            margin-top: 3rem;
-        }
-        
-        .faq-section h2 {
-            color: #4f46e5;
-            margin-bottom: 2rem;
-        }
-        
-        .faq-item {
-            background: rgba(255, 255, 255, 0.05);
-            padding: 1.5rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-        }
-        
-        .faq-item h3 {
-            color: #fff;
-            margin-bottom: 0.5rem;
-        }
-        
-        .cta-section {
-            text-align: center;
-            background: linear-gradient(135deg, #4f46e5, #7c3aed);
-            padding: 2rem;
-            border-radius: 12px;
-            margin-top: 3rem;
-        }
-        
-        .cta-button {
-            display: inline-block;
-            background: #fff;
-            color: #4f46e5;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            margin-top: 1rem;
-            transition: transform 0.2s;
-        }
-        
-        .cta-button:hover {
-            transform: translateY(-2px);
-        }
-    </style>
-    
-    <script>
-        // Theme Management
-        function toggleTheme() {
-            const body = document.body;
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (body.classList.contains('dark-theme')) {
-                body.classList.remove('dark-theme');
-                themeIcon.className = 'fas fa-moon';
-                localStorage.setItem('theme', 'light');
-            } else {
-                body.classList.add('dark-theme');
-                themeIcon.className = 'fas fa-sun';
-                localStorage.setItem('theme', 'dark');
-            }
-        }
-        
-        // Mobile Menu Functions
-        function toggleMobileMenu() {
-            const mobileNav = document.getElementById('mobile-nav');
-            const hamburger = document.querySelector('.hamburger-menu');
-            
-            mobileNav.classList.toggle('active');
-            hamburger.classList.toggle('active');
-        }
-        
-        // Initialize theme on page load
-        document.addEventListener('DOMContentLoaded', function() {
-            const savedTheme = localStorage.getItem('theme');
-            const themeIcon = document.getElementById('theme-icon');
-            
-            if (savedTheme === 'light') {
-                document.body.classList.remove('dark-theme');
-                themeIcon.className = 'fas fa-moon';
-            } else {
-                document.body.classList.add('dark-theme');
-                themeIcon.className = 'fas fa-sun';
-            }
-        });
-    </script>
+    <!-- Back to Top Button -->
+    <button id="backToTop" class="back-to-top" title="Back to Top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="js/navigation.js"></script>
 </body>
 </html>

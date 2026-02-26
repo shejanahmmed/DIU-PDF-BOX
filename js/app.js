@@ -146,7 +146,15 @@ fileInput.addEventListener('change', (e) => {
  * Creates PDF with cover page and merges uploaded files
  */
 document.getElementById('generateBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('generateBtn');
+    const originalContent = btn.innerHTML;
+    
     try {
+        // Add loading state
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Generating PDF...';
+        btn.style.opacity = '0.8';
+
         // Initialize PDF-lib components
         const { PDFDocument, rgb, StandardFonts } = PDFLib;
         const pdfDoc = await PDFDocument.create();
@@ -444,9 +452,23 @@ document.getElementById('generateBtn').addEventListener('click', async () => {
 
         // Store blob URL for download
         window.currentPdfBlob = blobUrl;
+        
+        // Reset button state
+        btn.disabled = false;
+        btn.innerHTML = originalContent;
+        btn.style.opacity = '1';
+        
+        // Scroll to preview section
+        document.getElementById('previewSection').scrollIntoView({ behavior: 'smooth', block: 'start' });
+
     } catch (error) {
         console.error('Error generating PDF:', error);
         alert('Error generating PDF: ' + error.message);
+        
+        // Reset button state on error
+        btn.disabled = false;
+        btn.innerHTML = originalContent;
+        btn.style.opacity = '1';
     }
 });
 
