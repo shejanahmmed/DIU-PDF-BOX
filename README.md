@@ -1,8 +1,6 @@
 <div align="center">
 
-# 🎓 DIU PDF BOX
-
-![DIU PDF BOX Banner](Logos/DIU%20PDF%20BOX(Light).png)
+# <img src="Logos/DIU PDF BOX(Light).png" height="32"> DIU PDF BOX
 
 ### **Enterprise-grade Academic PDF Orchestrator**
 A high-performance, client-side web application designed for students at **Daffodil International University** to streamline the generation of standardized academic documentation.
