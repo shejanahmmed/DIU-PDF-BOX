@@ -64,14 +64,17 @@ function updateLogo() {
  */
 function toggleTheme() {
     const body = document.body;
+    const html = document.documentElement;
     const themeIcon = document.getElementById('theme-icon');
     
-    if (body.classList.contains('dark-theme')) {
+    if (html.classList.contains('dark-theme') || body.classList.contains('dark-theme')) {
         body.classList.remove('dark-theme');
+        html.classList.remove('dark-theme');
         if (themeIcon) themeIcon.className = 'fas fa-moon';
         localStorage.setItem('theme', 'light');
     } else {
         body.classList.add('dark-theme');
+        html.classList.add('dark-theme');
         if (themeIcon) themeIcon.className = 'fas fa-sun';
         localStorage.setItem('theme', 'dark');
     }
@@ -87,6 +90,7 @@ function toggleMobileMenu() {
     if (!mobileNav) return;
 
     mobileNav.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
     
     if (mobileNav.classList.contains('active')) {
         if (icon) icon.className = 'fas fa-times';
@@ -101,6 +105,7 @@ function closeMobileMenu() {
     if (!mobileNav) return;
 
     mobileNav.classList.remove('active');
+    document.body.classList.remove('menu-open');
     if (icon) icon.className = 'fas fa-bars';
 }
 

@@ -30,7 +30,7 @@
   --radius-xl: 1.5rem;
 }
 
-.dark-theme {
+.dark-theme, html.dark-theme {
   --bg-primary: #0b0f1a;
   --bg-secondary: #111827;
   --bg-tertiary: #1f2937;
@@ -55,6 +55,7 @@ html, body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html {
@@ -1008,6 +1009,7 @@ select {
   height: 3rem;
   background: var(--bg-card);
   border: 1px solid var(--border-color);
+  color: var(--text-primary); /* Use theme text color */
   border-radius: 100px;
   display: flex;
   align-items: center;
@@ -1018,6 +1020,10 @@ select {
   visibility: hidden;
   transition: all 0.3s ease;
   z-index: 100;
+}
+
+.back-to-top i {
+  color: var(--text-primary);
 }
 
 .back-to-top.visible {
@@ -1175,14 +1181,14 @@ select {
 }
 
 .social-pills .pill {
-    padding: 0.75rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 100px;
     text-decoration: none;
-    font-size: 0.9rem;
+    font-size: 0.8rem;
     font-weight: 600;
     display: flex;
     align-items: center;
-    gap: 0.6rem;
+    gap: 0.5rem;
     transition: all 0.3s ease;
 }
 
@@ -1433,10 +1439,10 @@ select {
   }
 
   .header-content {
-    padding: 0.4rem 0.5rem 0.4rem 1rem;
+    padding: 1rem 0.5rem 1rem 1rem !important;
     max-width: 450px;
     margin: 0 auto;
-    border-radius: 100px;
+    border-radius: 1.25rem !important; /* Minimal Rounding */
     gap: 0.5rem;
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
@@ -1474,7 +1480,7 @@ select {
 
   .mobile-nav {
     position: fixed;
-    top: 5rem;
+    top: 5.25rem; /* Increased from 5rem to move it down */
     left: 1.25rem;
     right: 1.25rem;
     max-width: 450px;
@@ -1497,6 +1503,29 @@ select {
   .mobile-nav.active {
     display: flex !important;
     z-index: 10000 !important;
+  }
+
+  /* Professional Backdrop Blur - Content Only */
+  .menu-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    z-index: 999; /* Below header and menu */
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  body.menu-open .menu-overlay {
+    display: block;
+  }
+
+  body.menu-open {
+    overflow: hidden;
   }
 
   .dark-theme .mobile-nav {
@@ -1545,7 +1574,7 @@ select {
   }
 
   .container {
-    padding: 5rem 1rem 3rem;
+    padding: 3.5rem 1rem 3rem !important;
   }
 
   /* Form Section Optimizations */

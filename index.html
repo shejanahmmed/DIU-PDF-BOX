@@ -33,6 +33,17 @@
     <link rel="apple-touch-icon" href="Logos/DIU PDF BOX(Dark).png">
     <!-- External Stylesheets -->
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        // Immediate Theme Check to prevent flash
+        (function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark' || !savedTheme) { // Default to dark if nothing or explicitly dark
+                document.documentElement.classList.add('dark-theme');
+            } else {
+                document.documentElement.classList.remove('dark-theme');
+            }
+        })();
+    </script>
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <!-- Structured Data for SEO -->
@@ -66,6 +77,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.15.0/Sortable.min.js"></script>
 </head>
 <body>
+    <div class="menu-overlay"></div>
     <div class="scroll-progress"></div>
     <!-- Navigation Header -->
     <header class="header">
