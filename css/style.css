@@ -396,6 +396,8 @@ h1, h2, h3, h4, .cta-card h2 {
   box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.04), 0 2px 4px -1px rgba(0, 0, 0, 0.02);
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   border: 1px solid var(--border-color);
+  position: relative;
+  z-index: 1;
 }
 
 .form-section:hover {
@@ -701,7 +703,59 @@ select {
   font-size: 1.1rem;
 }
 
-/* ===== SLEEK FILE ROW VIEW ===== */
+/* ===== AUTOCOMPLETE DROPDOWN ===== */
+.autocomplete-list {
+  position: absolute;
+  top: calc(100% - 1rem);
+  left: 0;
+  right: 0;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.2);
+  z-index: 2000;
+  max-height: 250px;
+  overflow-y: auto;
+  display: none;
+  animation: slideDown 0.2s ease-out;
+}
+
+.autocomplete-item {
+  padding: 0.75rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border-bottom: 1px solid var(--bg-tertiary);
+}
+
+.autocomplete-item:last-child {
+  border-bottom: none;
+}
+
+.autocomplete-item:hover {
+  background: var(--accent-soft);
+  color: var(--accent-primary);
+  padding-left: 1.5rem;
+}
+
+.autocomplete-item strong {
+  display: block;
+  font-size: 0.9rem;
+}
+
+.autocomplete-item span {
+  font-size: 0.75rem;
+  opacity: 0.7;
+}
+
+/* Scrollbar for list */
+.autocomplete-list::-webkit-scrollbar {
+  width: 6px;
+}
+
+.autocomplete-list::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 10px;
+}
 .image-list {
   display: flex;
   flex-direction: column;

@@ -189,7 +189,10 @@
                 <input type="text" id="courseName" placeholder="Programming Fundamentals">
                 
                 <label>Teacher Name</label>
-                <input type="text" id="teacherName" placeholder="Enter teacher name">
+                <div style="position: relative;">
+                    <input type="text" id="teacherName" placeholder="Enter teacher name" autocomplete="off">
+                    <div id="teacherAutocomplete" class="autocomplete-list"></div>
+                </div>
                 
                 <label>Designation</label>
                 <input type="text" id="designation" placeholder="Professor">
@@ -295,6 +298,7 @@
             });
         });
     </script>
+    <script src="js/faculty_data.js"></script>
     <script src="js/app.js"></script>
 </body>
 </html>
